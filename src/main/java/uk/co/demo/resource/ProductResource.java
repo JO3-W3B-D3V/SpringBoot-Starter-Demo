@@ -41,7 +41,7 @@ public class ProductResource {
      */
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Product>> products() {
-        return ResponseEntity.ok(service.findAll());
+        return ResponseEntity.ok(service.findFirstTen());
     }
     
     /**

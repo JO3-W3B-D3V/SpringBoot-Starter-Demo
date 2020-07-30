@@ -27,7 +27,7 @@ public class ErrorResource {
      * the application level.
      *
      * @since 1.0.0
-     * @param exception
+     * @param throwable
      * @return ResponseEntity
      */
     @ExceptionHandler({ Throwable.class, Exception.class })
@@ -39,6 +39,21 @@ public class ErrorResource {
                 .body("Internal server error.");
     }
 
+    /**
+     * This method will be used to handle requests that will result in a 400.
+     * 
+     * @since 1.0.0
+     * @param exception
+     * @return ResponseEntity
+     */
+    public ResponseEntity<String> invalidParams(Exception exception) {
+    	log.info("Invalid parameters provided", exception);
+    	
+    	return ResponseEntity.status(400)
+    			.contentType(TEXT_PLAIN)
+    			.body(exception.getMessage() + ".");
+    }
+    
     /**
      * This method will be used to handle requests that will result in a 404.
      *

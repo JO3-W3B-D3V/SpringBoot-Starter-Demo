@@ -3,11 +3,13 @@ package uk.co.demo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lombok.var;
-import lombok.extern.jbosslog.JBossLog;
 import uk.co.demo.entity.Product;
+import uk.co.demo.exception.InvalidParamProvided;
 import uk.co.demo.exception.NoProductFoundException;
 import uk.co.demo.repository.ProductRepository;
 
@@ -18,7 +20,6 @@ import uk.co.demo.repository.ProductRepository;
  * @since 1.0.0
  * @author jo3-w3b-d3v
  */
-@JBossLog
 @Service
 public class ProductService {
 
@@ -31,26 +32,40 @@ public class ProductService {
 	 * @since 1.0.0
 	 * @return List<Product>
 	 */
-	public List<Product> findAll() {
-		log.info("Getting all of the products from the database.");
-		return products.findAll();
+	public List<Product> findFirstTen() {
+		return products.findAll(PageRequest.of(0, 10, Sort.by(Sort.Direction.ASC, "id"))).getContent();
+	}
+	
+	/**
+	 * This method will return a list of products.
+	 * 
+	 * @since 1.0.0
+	 * @param pageIndex
+	 * @return List<Product>
+	 */
+	public List<Product> findPage(Integer pageIndex) {
+		if (pageIndex == null) {
+			throw new InvalidParamProvided("The page number must be provided");
+		} else if (pageIndex <= 0) {
+			throw new InvalidParamProvided("The page number must be greater than 0");
+		}
+		
+		return products.findAll(PageRequest.of(pageIndex, 10, Sort.by(Sort.Direction.ASC, "id"))).getContent();
 	}
 
 	/**
 	 * This method will return a specific product.
 	 *
 	 * @since 1.0.0
+	 * @param id
 	 * @return Product
 	 */
 	public Product findById(Integer id) {
-		log.info("Searching for a product with the id: " + id);
 		var product = products.findById(id);
 
 		if (product.isEmpty()) {
-			log.info("No such product id was found, throwing exception.");
 			throw new NoProductFoundException(id);
 		} else {
-			log.info("Product found.");
 			return product.get();
 		}
 	}
@@ -62,7 +77,6 @@ public class ProductService {
 	 * @param product
 	 */
 	public void insert(Product product) {
-		log.info("Product Info: " + product.getName() + " " + product.getDescription() + " " + product.getCost());
 		products.save(product);
 	}
 }
