@@ -1,4 +1,4 @@
-name: Pipeline
+name: Continuous Deployment UAT
 
 on:
   push:
