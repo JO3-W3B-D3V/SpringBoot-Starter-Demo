@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import lombok.extern.jbosslog.JBossLog;
+import uk.co.demo.exception.InvalidParamProvided;
 import uk.co.demo.exception.ResourceNotFoundException;
 
 /**
@@ -46,6 +47,7 @@ public class ErrorResource {
      * @param exception
      * @return ResponseEntity
      */
+    @ExceptionHandler({ InvalidParamProvided.class })
     public ResponseEntity<String> invalidParams(Exception exception) {
     	log.info("Invalid parameters provided", exception);
     	

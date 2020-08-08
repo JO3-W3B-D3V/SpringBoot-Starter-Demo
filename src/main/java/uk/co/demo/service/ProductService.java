@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lombok.var;
+import lombok.extern.jbosslog.JBossLog;
 import uk.co.demo.entity.Product;
 import uk.co.demo.exception.InvalidParamProvided;
 import uk.co.demo.exception.NoProductFoundException;
@@ -21,6 +22,7 @@ import uk.co.demo.repository.ProductRepository;
  * @author jo3-w3b-d3v
  */
 @Service
+@JBossLog
 public class ProductService {
 
 	@Autowired
@@ -33,7 +35,8 @@ public class ProductService {
 	 * @return List<Product>
 	 */
 	public List<Product> findFirstTen() {
-		return products.findAll(PageRequest.of(0, 10, Sort.by(Sort.Direction.ASC, "id"))).getContent();
+		log.info("Finding the first ten products");
+		return findPage(0);
 	}
 	
 	/**
@@ -46,11 +49,19 @@ public class ProductService {
 	public List<Product> findPage(Integer pageIndex) {
 		if (pageIndex == null) {
 			throw new InvalidParamProvided("The page number must be provided");
-		} else if (pageIndex <= 0) {
+		} else if (pageIndex < 0) {
 			throw new InvalidParamProvided("The page number must be greater than 0");
+		} 
+		
+		List<Product> results = products.findAll(PageRequest.of(pageIndex, 10, Sort.by(Sort.Direction.ASC, "id"))).getContent();
+		Integer printableIndex = pageIndex + 1;
+		
+		if (results.isEmpty()) {
+			throw new InvalidParamProvided("The page number provided is too large, there are no products on the page " + printableIndex);
 		}
 		
-		return products.findAll(PageRequest.of(pageIndex, 10, Sort.by(Sort.Direction.ASC, "id"))).getContent();
+		log.info("Finding products on page " + printableIndex);
+		return results;
 	}
 
 	/**

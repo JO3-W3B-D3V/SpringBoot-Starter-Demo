@@ -5,6 +5,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.http.MediaType.TEXT_PLAIN_VALUE;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uk.co.demo.entity.Product;
@@ -40,8 +42,10 @@ public class ProductResource {
      * @return ResponseEntity<List<Product>>
      */
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Product>> products() {
-        return ResponseEntity.ok(service.findFirstTen());
+    public ResponseEntity<List<Product>> products(@RequestParam(value = "page", required = false) Integer page) {
+		return Optional.ofNullable(page)
+			.map(x -> ResponseEntity.ok(service.findPage(page - 1)))
+			.orElseGet(() -> ResponseEntity.ok(service.findFirstTen()));
     }
     
     /**

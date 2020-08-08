@@ -33,4 +33,11 @@ public class Product {
     private String name;
     private String description;
     private Double cost;
+    @JsonIgnore
+    private Integer categoryId;
+    private String brand; 
+    @JsonIgnore
+    private Boolean onSale;
+    @JsonIgnore
+    private Integer saleId;
 }

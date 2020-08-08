@@ -9,18 +9,26 @@ env:
   ### TODO... Enter your secrets here... 
 
 jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Quality 
+        run: echo "TODO" ### TODO
+
+
   build: 
     runs-on: ubuntu-latest
-    steps:
+    needs: [quality]
+    steps: 
       - uses: actions/checkout@v2
-      - name: Sonar
-        uses: ### TODO
       - name: Build
-        uses: ### TODO
-  deploy-staging:
+        run: echo "TODO!" ### TODO
+
+
+  deploy-production:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
       - uses: actions/checkout@v2
       - name: deploy
-        uses: ### TODO
+        run: echo "TODO!" ### TODO
