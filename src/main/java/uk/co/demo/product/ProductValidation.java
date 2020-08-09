@@ -25,7 +25,7 @@ import uk.co.demo.validation.Validator;
 public class ProductValidation extends ValidationBuilder implements Validator<Integer> {
 		
 	/**
-	 * This method is used to validate the password argument.
+	 * This method is used to validate the page index argument.
 	 * 
 	 * @param password
 	 * @throws InvalidParamProvided
