@@ -1,12 +1,10 @@
-package uk.co.demo.resource;
+package uk.co.demo.health;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import uk.co.demo.health.HealthResource;
 
 /**
  * This is the unit tests that will be used for testing the health 
@@ -16,10 +14,10 @@ import uk.co.demo.health.HealthResource;
  * @since 1.0.0
  * @author jo3-w3b-d3v
  */
-@DisplayName("When HealthResource (unit tests)")
-public class HealthResourceTest {
+@DisplayName("When HealthResourceV1 (unit tests)")
+public class HealthResourceV1Test {
 	
-	private HealthResource resource;
+	private HealthResourceV1 resource;
 	
 	/**
 	 * This is just your typical setup method.
@@ -28,7 +26,7 @@ public class HealthResourceTest {
 	 */
 	@BeforeEach
 	private void setup() {
-		resource = new HealthResource();
+		resource = new HealthResourceV1();
 	}
 	
 	/**

@@ -1,4 +1,4 @@
-package uk.co.demo.resource;
+package uk.co.demo.health;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -23,8 +23,8 @@ import lombok.SneakyThrows;
  */
 @SpringBootTest
 @AutoConfigureMockMvc
-@DisplayName("When HealthResource (integration tests)")
-public class HealthResourceIT {
+@DisplayName("When HealthResourceV1 (integration tests)")
+public class HealthResourceV1IT {
 	
 	@Autowired
     private MockMvc mvc;
@@ -39,7 +39,7 @@ public class HealthResourceIT {
 	@SneakyThrows
 	@DisplayName("status succeeds")
 	public void testStatus() {
-		mvc.perform(get("/health"))
+		mvc.perform(get("/v1/health"))
 			.andDo(print())
 			.andExpect(status().isOk());
 	}

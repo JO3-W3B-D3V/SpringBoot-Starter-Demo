@@ -20,7 +20,7 @@ $ docker run -p 80:80 online-shop
 ```
 
 ## The Code
-This code has been developed in such a way where I've tried to implement a REST API, using ideas that come from practices such as defensive programming.
+This code has been developed in such a way where I've tried to implement a REST API, using ideas that come from practices such as defensive programming. In the event that you decide to use this code in any scenario, be sure to change or update the values related to unit test coverage in the POM & CVE values. You may find that any CVE(s) with a CVSS of *'x'* is acceptable, I've only used 7 in this example because that's considered quite high.
 
 ## TODO
 - Implement some spring cloud feature.

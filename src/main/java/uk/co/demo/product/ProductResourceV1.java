@@ -28,8 +28,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author jo3-w3b-d3v
  */
 @RestController
-@RequestMapping("/products")
-public class ProductResource {
+@RequestMapping("/v1/products")
+public class ProductResourceV1 {
 	
 	@Autowired
 	private ProductService service;

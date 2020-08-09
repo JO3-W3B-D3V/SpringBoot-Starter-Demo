@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions
+	xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+	<suppress>
+		<notes>TODO. Last checked, no simple fix.</notes>
+		<vulnerabilityName>CVE-2018-1258</vulnerabilityName>
+	</suppress>
+	<suppress>
+		<notes>TODO. Last checked, no simple fix.</notes>
+		<vulnerabilityName>CVE-2020-5407</vulnerabilityName>
+	</suppress>
+	<suppress>
+		<notes>TODO. Last checked, no simple fix.</notes>
+		<vulnerabilityName>CVE-2020-5408</vulnerabilityName>
+	</suppress>
+</suppressions>
