@@ -1,4 +1,4 @@
-package uk.co.demo.resource;
+package uk.co.demo.health;
 
 import static org.springframework.http.MediaType.TEXT_PLAIN_VALUE;
 

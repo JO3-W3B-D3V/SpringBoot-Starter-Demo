@@ -1,4 +1,4 @@
-package uk.co.demo.entity;
+package uk.co.demo.product;
 
 import static javax.persistence.GenerationType.IDENTITY;
 

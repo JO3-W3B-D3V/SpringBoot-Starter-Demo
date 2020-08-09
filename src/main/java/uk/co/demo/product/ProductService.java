@@ -1,4 +1,4 @@
-package uk.co.demo.service;
+package uk.co.demo.product;
 
 import java.util.List;
 
@@ -9,10 +9,6 @@ import org.springframework.stereotype.Service;
 
 import lombok.var;
 import lombok.extern.jbosslog.JBossLog;
-import uk.co.demo.entity.Product;
-import uk.co.demo.exception.InvalidParamProvided;
-import uk.co.demo.exception.NoProductFoundException;
-import uk.co.demo.repository.ProductRepository;
 
 /**
  * This is where the business logic of the application takes place.
@@ -27,6 +23,9 @@ public class ProductService {
 
 	@Autowired
 	private ProductRepository products;
+	
+	@Autowired 
+	private ProductValidation pageValidator;
 
 	/**
 	 * This method will return a list of products.
@@ -47,20 +46,12 @@ public class ProductService {
 	 * @return List<Product>
 	 */
 	public List<Product> findPage(Integer pageIndex) {
-		if (pageIndex == null) {
-			throw new InvalidParamProvided("The page number must be provided");
-		} else if (pageIndex < 0) {
-			throw new InvalidParamProvided("The page number must be greater than 0");
-		} 
-		
-		List<Product> results = products.findAll(PageRequest.of(pageIndex, 10, Sort.by(Sort.Direction.ASC, "id"))).getContent();
-		Integer printableIndex = pageIndex + 1;
-		
-		if (results.isEmpty()) {
-			throw new InvalidParamProvided("The page number provided is too large, there are no products on the page " + printableIndex);
-		}
-		
-		log.info("Finding products on page " + printableIndex);
+		// Index 0 is fine, but we don't want to have a "page 0" for the consuming web application.
+		var computablePageIndex = pageIndex - 1;
+		pageValidator.validate(computablePageIndex);
+		var page = PageRequest.of(computablePageIndex, 10, Sort.by(Sort.Direction.ASC, "id"));
+		var results = products.findAll(page).getContent();
+		pageValidator.validateIsNotEmpty(results, pageIndex);
 		return results;
 	}
 
@@ -73,12 +64,8 @@ public class ProductService {
 	 */
 	public Product findById(Integer id) {
 		var product = products.findById(id);
-
-		if (product.isEmpty()) {
-			throw new NoProductFoundException(id);
-		} else {
-			return product.get();
-		}
+		pageValidator.validateIsNotEmpty(product, id);
+		return product.get();
 	}
 	
 	/**
@@ -88,6 +75,7 @@ public class ProductService {
 	 * @param product
 	 */
 	public void insert(Product product) {
+		// Todo... Add some validation...
 		products.save(product);
 	}
 }

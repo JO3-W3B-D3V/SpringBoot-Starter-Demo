@@ -1,4 +1,4 @@
-package uk.co.demo.resource;
+package uk.co.demo.product;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -9,16 +9,15 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import uk.co.demo.entity.Product;
-import uk.co.demo.service.ProductService;
 
 /**
  * This is essentially where all of the application will expose some very small
@@ -44,7 +43,7 @@ public class ProductResource {
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Product>> products(@RequestParam(value = "page", required = false) Integer page) {
 		return Optional.ofNullable(page)
-			.map(x -> ResponseEntity.ok(service.findPage(page - 1)))
+			.map(x -> ResponseEntity.ok(service.findPage(page)))
 			.orElseGet(() -> ResponseEntity.ok(service.findFirstTen()));
     }
     
@@ -66,8 +65,32 @@ public class ProductResource {
      *  @return ResponseEntity<String>
      */
     @PostMapping(produces = TEXT_PLAIN_VALUE, consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> createProducts(@RequestBody Product product) {
+    public ResponseEntity<String> createProduct(@RequestBody Product product) {
     	service.insert(product);
     	return new ResponseEntity<String>("Created successfully", CREATED);
+    }
+    
+    /**
+     * This will update a product. 
+     * 
+     * @since 1.0.0
+     * @return ResponseEntity<String>
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateProduct(@PathVariable Integer id, @RequestBody Product product) {
+    	// TODO ... 
+    	return null;
+    }
+    
+    /**
+     * This will delete a product.
+     * 
+     * @since 1.0.0 
+     * @return ResponseEntity<String>
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable Integer id) {
+    	// TODO ... 
+    	return null;
     }
 }

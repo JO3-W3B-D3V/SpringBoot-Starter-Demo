@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import uk.co.demo.health.HealthResource;
+
 /**
  * This is the unit tests that will be used for testing the health 
  * resource class.

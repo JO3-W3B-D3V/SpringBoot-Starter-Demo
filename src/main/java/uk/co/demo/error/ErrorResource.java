@@ -1,10 +1,11 @@
-package uk.co.demo.resource;
+package uk.co.demo.error;
 
 import static org.springframework.http.MediaType.TEXT_PLAIN;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import lombok.extern.jbosslog.JBossLog;
@@ -47,13 +48,18 @@ public class ErrorResource {
      * @param exception
      * @return ResponseEntity
      */
-    @ExceptionHandler({ InvalidParamProvided.class })
+    @ExceptionHandler({ InvalidParamProvided.class, MethodArgumentTypeMismatchException.class })
     public ResponseEntity<String> invalidParams(Exception exception) {
     	log.info("Invalid parameters provided", exception);
+    	String message = exception.getMessage() + ".";
+    	
+    	if (exception.getClass().equals(MethodArgumentTypeMismatchException.class)) {
+    		message = "Invalid parameter type(s) provided.";
+    	}
     	
     	return ResponseEntity.status(400)
     			.contentType(TEXT_PLAIN)
-    			.body(exception.getMessage() + ".");
+    			.body(message);
     }
     
     /**
