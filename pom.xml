@@ -275,9 +275,9 @@
 			<plugin>
 				<groupId>org.liquibase</groupId>
 				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>4.0.0</version>
 				<configuration>
 					<changeLogFile>src/main/resources/liquibase/changelog.xml</changeLogFile>
-					<propertyFile>src/main/resources/liquibase/liquibase.properties</propertyFile>
 				</configuration>
 				<executions>
 					<execution>
