@@ -15,10 +15,10 @@ import uk.co.demo.validation.Validator;
 
 /**
  * The purpose of this class is to merely implement some form of validation
- * checks on a user's password.
+ * some validation around the product params.
  * 
  * @author jo3-w3b-d3v
- * @since 06/03/2020
+ * @since 09/08/2020
  * @version 1.0.0
  */
 @Component
