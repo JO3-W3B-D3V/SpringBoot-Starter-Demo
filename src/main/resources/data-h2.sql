@@ -9,7 +9,7 @@ INSERT INTO product_sales(name, description, startDate, endDate) VALUES
   ('Half Price', 'This decreases the product value by half.', PARSEDATETIME('08/07/2020', 'dd/MM/yyyy'), PARSEDATETIME('08/10/2020', 'dd/MM/yyyy')),
   ('25% Off', 'This decreases the product value by a quarter.', PARSEDATETIME('08/07/2020', 'dd/MM/yyyy'), PARSEDATETIME('08/10/2020', 'dd/MM/yyyy'));
 
-INSERT INTO product (name, description, cost, categoryId, brand, onSale, saleId) VALUES
+INSERT INTO product(name, description, cost, categoryId, brand, onSale, saleId) VALUES
   ('Beer', 'Perfect for a piss up with the lads!', 9.99, 1, 'Carling', false, 1),
   ('Wine', 'Perfect for a night in with the wife.', 12.99, 1, 'Echo Falls', false, 1),
   ('Ale', 'How about something classic & brewed in the local area?', 15.99, 1, 'Doom Bar', false, 1),
@@ -24,6 +24,6 @@ INSERT INTO product (name, description, cost, categoryId, brand, onSale, saleId)
 
 -- For this example, the passwords have not been encrypted, in real world 
 -- use cases, please encrypt passwords at ALL times!!!!! 
-INSERT INTO admin (forename, surname, email, password, role) VALUES 
+INSERT INTO admin(forename, surname, email, password, role) VALUES 
   ('Joe', 'Bloggs', 'Joe.Bloggs@somewebsite.com', 'p@55W0rd$123Abc', 'Website Admin'),
   ('John', 'Doe', 'John.Doe@somewebsite.com', 'I@mAw3s0me!Qwerty', 'Product Manager');

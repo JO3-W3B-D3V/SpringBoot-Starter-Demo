@@ -29,5 +29,6 @@ This code has been developed in such a way where I've tried to implement a REST 
 - Implement validation.
 - Implement this solution with Docker.
 - Implement a CI/CD solution of some sort.
+- Add some DB migration code, i.e. liquibase.	
 - etc.
 
