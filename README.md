@@ -19,6 +19,9 @@ $ docker build -t online-shop -t online-shop:0.0.1 .
 $ docker run -p 80:80 online-shop
 ```
 
+## The Code
+This code has been developed in such a way where I've tried to implement a REST API, using ideas that come from practices such as defensive programming.
+
 ## TODO
 - Implement some spring cloud feature.
 - Increase test coverage. 
