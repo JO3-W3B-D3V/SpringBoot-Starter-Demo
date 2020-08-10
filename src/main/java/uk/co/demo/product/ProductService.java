@@ -8,7 +8,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lombok.var;
-import lombok.extern.jbosslog.JBossLog;
 
 /**
  * This is where the business logic of the application takes place.
