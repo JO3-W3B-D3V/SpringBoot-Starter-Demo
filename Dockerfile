@@ -2,6 +2,7 @@
 FROM maven:3.6.0-jdk-11-slim AS build
 COPY src ./src
 COPY pom.xml ./
+COPY suppress.xml ./
 RUN mvn clean install
 
 # Package stage
