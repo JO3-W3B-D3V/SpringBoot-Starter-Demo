@@ -54,20 +54,8 @@
 	        tableName="product_sales"
         />
         
-        <createTable tableName="product">
-			<column name="id" type="int">
-				<constraints primaryKey="true" nullable="false" />
-			</column>
-			<column name="name" type="varchar(250)">
-				<constraints nullable="false" />
-			</column>
-			<column name="description " type="varchar(250)">
-				<constraints nullable="false" />
-			</column>
-			<column name="cost" type="double">
-				<constraints nullable="false" />
-			</column>
-			<column name="categoryId" type="int">
+        <addColumn tableName="product" >
+        	<column name="categoryId" type="int">
 				<constraints nullable="false" />
 			</column>
 			<column name="brand" type="varchar(50)">
@@ -77,9 +65,9 @@
 				<constraints nullable="false" />
 			</column>
 			<column name="saleId" type="Int">
-				<constraints nullable="false" foreignKeyName="fk_address_employee" references="employee(id)"/>
+				<constraints nullable="false" foreignKeyName="fk_product_sales" references="product_sales(id)"/>
 			</column>
-		</createTable>
+		</addColumn>
 		<addForeignKeyConstraint 
 			baseColumnNames="categoryId"
 			baseTableName="product"
@@ -102,13 +90,19 @@
 			<column name="id" type="int">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
-			<column name="name" type="varchar(250)">
+			<column name="forename" type="varchar(50)">
 				<constraints nullable="false" />
 			</column>
-			<column name="description " type="varchar(250)">
+			<column name="surname" type="varchar(50)">
 				<constraints nullable="false" />
 			</column>
-			<column name="cost" type="double">
+			<column name="email" type="varchar(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="password" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="role" type="varchar(50)">
 				<constraints nullable="false" />
 			</column>
 		</createTable>

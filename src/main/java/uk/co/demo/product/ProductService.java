@@ -18,7 +18,6 @@ import lombok.extern.jbosslog.JBossLog;
  * @author jo3-w3b-d3v
  */
 @Service
-@JBossLog
 public class ProductService {
 
 	@Autowired
@@ -34,8 +33,9 @@ public class ProductService {
 	 * @return List<Product>
 	 */
 	public List<Product> findFirstTen() {
-		log.info("Finding the first ten products");
-		return findPage(0);
+		var page = PageRequest.of(0, 10, Sort.by(Sort.Direction.ASC, "id"));
+		var results = products.findAll(page).getContent();
+		return results;
 	}
 	
 	/**
