@@ -1,6 +1,9 @@
 # Online-Store
 This is a demo/bare-bones project to help others get things up & running in a minimal amount of time.
 
+## Requirements
+In order to run this code base, you'll need to use Java 11+, to keep it simple, if you'd like this to run in Java 8, you'll just need to change some cases where I've used [Optional.isEmpty](https://dzone.com/articles/optionalisempty-available-in-jdk-11-ea-builds).
+
 ## Run
 In order to run this application locally, all that's needed is to have your Java development environment setup, with the assumption that you have [maven](https://maven.apache.org/) installed.
 
