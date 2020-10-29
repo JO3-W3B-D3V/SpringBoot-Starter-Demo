@@ -13,4 +13,8 @@
 		<notes>TODO. Last checked, no simple fix.</notes>
 		<vulnerabilityName>CVE-2020-5408</vulnerabilityName>
 	</suppress>
+	<suppress>
+		<notes>TODO.</notes>
+		<vulnerabilityName>CVE-2020-13943</vulnerabilityName>
+	</suppress>
 </suppressions>
