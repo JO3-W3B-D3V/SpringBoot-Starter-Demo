@@ -12,7 +12,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.2.RELEASE</version>
+		<version>2.3.4.RELEASE</version>
 	</parent>
 
 	<dependencies>
@@ -136,7 +136,7 @@
 		<dependency><!-- CVE-2018-1258 -->
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
-			<version>5.2.5.RELEASE</version><!--$NO-MVN-MAN-VER$ -->
+			<version>5.3.5.RELEASE</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 		<dependency><!-- CVE-2018-10237 -->
 			<groupId>com.google.guava</groupId>
@@ -253,7 +253,7 @@
 			<plugin>
 				<groupId>org.owasp</groupId>
 				<artifactId>dependency-check-maven</artifactId>
-				<version>5.2.4</version>
+				<version>6.0.2</version>
 				<configuration>
 					<failBuildOnCVSS>7</failBuildOnCVSS>
 					<showSummary>true</showSummary>
