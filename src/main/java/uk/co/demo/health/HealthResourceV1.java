@@ -1,4 +1,4 @@
-package uk.co.demo.resource;
+package uk.co.demo.health;
 
 import static org.springframework.http.MediaType.TEXT_PLAIN_VALUE;
 
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author jo3-w3b-d3v
  */
 @RestController
-@RequestMapping("/health")
-public class HealthResource {
+@RequestMapping("/v1/health")
+public class HealthResourceV1 {
 
 	/**
      * This is the status end point.

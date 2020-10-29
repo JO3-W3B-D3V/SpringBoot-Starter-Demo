@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
+	<changeSet id="1" author="jo3-w3b-d3v">
+		<createTable tableName="product">
+			<column name="id" type="int">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(250)">
+				<constraints nullable="false" />
+			</column>
+			<column name="description " type="varchar(250)">
+				<constraints nullable="false" />
+			</column>
+			<column name="cost" type="double">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="2" author="jo3-w3b-d3v">
+		<createTable tableName="product_category">
+			<column name="id" type="int">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(250)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<createIndex indexName="product_category_name" tableName="product_category">
+			<column name="name" />
+		</createIndex>
+
+		<createTable tableName="product_sales">
+			<column name="id" type="int">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(250)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="description " type="varchar(250)">
+				<constraints nullable="false" />
+			</column>
+			<column name="startDate" type="date"></column>
+			<column name="endDate" type="date"></column>
+		</createTable>
+		<addUniqueConstraint
+	        columnNames="name"
+	        constraintName="unique_product_sale_name"
+	        tableName="product_sales"
+        />
+        
+        <addColumn tableName="product" >
+        	<column name="categoryId" type="int">
+				<constraints nullable="false" />
+			</column>
+			<column name="brand" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="onSale" type="boolean">
+				<constraints nullable="false" />
+			</column>
+			<column name="saleId" type="Int">
+				<constraints nullable="false" foreignKeyName="fk_product_sales" references="product_sales(id)"/>
+			</column>
+		</addColumn>
+		<addForeignKeyConstraint 
+			baseColumnNames="categoryId"
+			baseTableName="product"
+			constraintName="fk_product_category_id"
+			referencedColumnNames="id"
+			referencedTableName="product_category"
+		/>
+		<addForeignKeyConstraint 
+			baseColumnNames="saleId"
+			baseTableName="product"
+			constraintName="fk_product_sale_id"
+			referencedColumnNames="id"
+			referencedTableName="product_sales"
+		/>
+		<createIndex indexName="index_product_name" tableName="product">
+			<column name="name" />
+		</createIndex>
+
+		<createTable tableName="admin">
+			<column name="id" type="int">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="forename" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="surname" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="email" type="varchar(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="password" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="role" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<createIndex indexName="index_admin_email" tableName="admin">
+			<column name="email" />
+		</createIndex>
+	</changeSet>
+</databaseChangeLog>

@@ -1,9 +1,7 @@
-package uk.co.demo.repository;
+package uk.co.demo.product;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import uk.co.demo.entity.Product;
 
 /**
  * This is a repository to retrieve information regarding
