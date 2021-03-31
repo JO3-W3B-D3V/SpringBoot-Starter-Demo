@@ -141,7 +141,7 @@
 		<dependency><!-- CVE-2018-10237 -->
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>28.1-jre</version>
+			<version>29.0-jre</version>
 		</dependency>
 		<dependency><!-- Directory traversal in org.codehaus.plexus.util.Expand, 
 				Possible XML Injection -->
