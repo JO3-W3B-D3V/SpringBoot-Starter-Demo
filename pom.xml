@@ -131,7 +131,7 @@
 				CVE-2019-17531, CVE-2019-16335, CVE-2019-14540 -->
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.10.1</version><!--$NO-MVN-MAN-VER$ -->
+			<version>2.12.7.1</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 		<dependency><!-- CVE-2018-1258 -->
 			<groupId>org.springframework.security</groupId>
